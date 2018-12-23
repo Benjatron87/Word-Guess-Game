@@ -29,71 +29,113 @@ var words = ["SCOOBER",
     "BREAK"
             ]
 
-var blanks = [];
-var win = true;
-var guessesLeft = 10;
-var blanksDIV;
-var blankVar = "";
-var randNum = Math.floor(Math.random() * words.length );
-var randomWord = words[randNum]
-var letters = randomWord.split("");
+    var blanksWord = "i";
+    var lettersWord = 0;
 
-var DOMblanks = document.getElementById("blanks");
-var DOMguesses = document.getElementById("guesses");
-document.getElementById("guesses").innerHTML = guessesLeft;
+document.body.onkeyup = function(e){
+    if(e.keyCode == 32){
+        //  State necessary global variables
+        var blanks = [];
+        var win = true;
+        var guessesLeft = 10;
+        var blankVar = "";
+        var guessNum = 0;
 
-for(var k = 0; k < letters.length; k++){
-        blanks.push("_ ");
-}
+        // State variables to link to HTML
+        var DOMblanks = document.getElementById("blanks");
 
-document.onkeypress = function(event) {
-
-    for(var l = 0; l < blanks.length; l++){
-
-        var blanksDIV = document.createElement("a");
-
-        blanksDIV.textContent = blanks[l];
-
-        DOMblanks.appendChild(blanksDIV);
-
-    }
-
-    guessesLeft--;
-
-    document.getElementById("guesses").innerHTML = guessesLeft;
-
-    event = event || window.event;
-
-    var charCode = event.keyCode || event.which;
-
-    var guess = String.fromCharCode(charCode);
-
-    guess = guess.toUpperCase();
-
-    for (var i = 0; i < letters.length; i++){
-
-        if (guess == letters[i]){
-
-            blanks[i] = guess;
+        document.getElementById("guesses").innerHTML = guessesLeft;
+        document.getElementById("endgame").innerHTML = "";
+        document.getElementById("wrong-guess").innerHTML = " ";
         
+        
+        var randNum = Math.floor(Math.random() * words.length );
+        var randomWord = words[randNum];
+        var letters = randomWord.split("");
+
+       
+
+        for(var l = 0; l < blanks.length; l++){
+
+            var blanksDIV = document.createElement("a");
+
+            blanksDIV.textContent = blanks[l];
+
+            DOMblanks.appendChild(blanksDIV);
+
         }
-        blankVar = blankVar + blanks[i];
+
+        for(var k = 0; k < letters.length; k++){
+            blanks.push("_ ");
     }
-    document.getElementById("blanks").innerHTML = blankVar;
-    
-    blankVar = "";
 
-    console.log(blanks);
-    console.log(letters);
+        console.log(blanks);
+        console.log(letters);    
 
-    if(blanks == letters){
+            document.onkeypress = function(event) {
 
-        var endgame = document.createElement("a");
+                if(guessesLeft > 0 && blanksWord != lettersWord){
+                
+                document.getElementById("guesses").innerHTML = guessesLeft;
 
-        endgame.textContent = "YOU WIN!!";
+                console.log(guessesLeft);
 
-        DOMblanks.appendChild(endgame);
+                event = event || window.event;
 
-        win = false;
+                var charCode = event.keyCode || event.which;
+
+                var guess = String.fromCharCode(charCode);
+
+                guess = guess.toUpperCase();
+
+                var guessRight = false;
+
+                for (var i = 0; i < letters.length; i++){
+
+                    if (guess == letters[i]){
+
+                        guessRight = true;
+                        blanks[i] = guess;
+                    }
+                    blankVar = blankVar + blanks[i];
+                }
+
+                document.getElementById("blanks").innerHTML = blankVar;
+
+                console.log(guessNum);
+                
+                blankVar = "";
+
+                console.log(blanks);
+                console.log(letters);
+
+                var blanksWord = blanks.join("");
+                var lettersWord = letters.join("");
+
+                console.log(blanksWord);
+                console.log(lettersWord);
+                
+                if (blanksWord == lettersWord){
+
+                    document.getElementById("endgame").innerHTML = "You Win!";
+                }
+
+                if (guessRight == false){
+
+                    guessesLeft--;
+
+                    document.getElementById("wrong-guess").innerHTML += guess;
+                }
+
+                document.getElementById("guesses").innerHTML = guessesLeft;
+
+                if(guessesLeft < 1){
+                    
+                    document.getElementById("endgame").innerHTML = "You Lose!";
+
+                }
+
+            }
+        }
     }
-};
+    };
