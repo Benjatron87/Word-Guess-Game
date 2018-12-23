@@ -29,14 +29,13 @@ var words = ["SCOOBER",
     "BREAK"
             ]
 
-    var blanksWord = "i";
-    var lettersWord = 0;
+    var lettersWord;
+    var blanksWord;
 
 document.body.onkeyup = function(e){
     if(e.keyCode == 32){
         //  State necessary global variables
         var blanks = [];
-        var win = true;
         var guessesLeft = 10;
         var blankVar = "";
         var guessNum = 0;
@@ -69,12 +68,18 @@ document.body.onkeyup = function(e){
             blanks.push("_ ");
     }
 
+        lettersWord = 1;
+        blanksWord = 0;
+
+        console.log(blanksWord);
+        console.log(lettersWord);
+
         console.log(blanks);
-        console.log(letters);    
+        console.log(letters);  
 
             document.onkeypress = function(event) {
 
-                if(guessesLeft > 0 && blanksWord != lettersWord){
+                if(guessesLeft > 0 && (blanksWord !== lettersWord)){
                 
                 document.getElementById("guesses").innerHTML = guessesLeft;
 
