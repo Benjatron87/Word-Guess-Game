@@ -1,6 +1,7 @@
 
 // An array of common ultimate terms.
-var words = ["SCOOBER",
+var words = [
+    "SCOOBER",
     "FLICK",
     "BACKHAND",
     "LAYOUT",
@@ -23,43 +24,50 @@ var words = ["SCOOBER",
 // Game starts upon pressing the space button.
 document.body.onkeyup = function(e){
     if(e.keyCode == 32){
-        //  State necessary variables.
+        //  Make an empty "blanks" array to be filled later.
         var blanks = [];
+
+        // Set the number of guesses for each round.
         var guessesLeft = 10;
+
+        // State other necessary variables.
+        var blankVar2 = "";
         var blankVar = "";
         var guessNum = 0;
 
+        // Prompt the user as to what to do next.
+        document.getElementById("keys").innerHTML = "Press any Letter to Guess!";
+
         // State variables to link to HTML.
         var DOMblanks = document.getElementById("blanks");
+
         document.getElementById("guesses").innerHTML = guessesLeft;
         document.getElementById("endgame").innerHTML = "";
         document.getElementById("wrong-guess").innerHTML = " ";
         
-        // Getting a random number to choose a random word from the array above.
+        // Getting a random number to choose a random word from the "words" array above.
         var randNum = Math.floor(Math.random() * words.length );
         var randomWord = words[randNum];
 
         // Converting that random word into and array of its own.
         var letters = randomWord.split("");
 
+        // Adding the appropriate number of underscores to the "blanks" array.
+        for(var k = 0; k < letters.length; k++){
+            blanks.push("_" + "\xa0");
+        }
+
         // Adds each element of the "blanks" array individually to the HTML. 
         for(var l = 0; l < blanks.length; l++){
 
-            var blanksDIV = document.createElement("a");
-
-            blanksDIV.textContent = blanks[l];
-
-            DOMblanks.appendChild(blanksDIV);
+            blankVar2 = blankVar2 + blanks[l];
         }
 
-        // Adding the appropriate number of underscores to the "blanks" array.
-        for(var k = 0; k < letters.length; k++){
-            blanks.push("_ ");
-        }
+        document.getElementById("blanks").innerHTML = blankVar2;
 
         // Resets these variables for a new game.
-        var lettersWord = 1;
-        var blanksWord = 0;
+        var lettersWord = true;
+        var blanksWord = false;
 
         console.log(blanksWord);
         console.log(lettersWord);
@@ -121,7 +129,11 @@ document.body.onkeyup = function(e){
                     // If the strings "blanksWord" and "lettersWord" match, then "You Win!" is displayed in the HTML.
                     if (blanksWord == lettersWord){
 
+                        document.getElementById("endgame").style.color = "rgb(0, 162, 255)";
+
                         document.getElementById("endgame").innerHTML = "You Win!";
+
+                        document.getElementById("keys").innerHTML = "";
                     }
 
                     // If your guess was wrong, it adds the letter guessed to the HTML and removes 1 from the guesses left.
@@ -138,6 +150,12 @@ document.body.onkeyup = function(e){
                     if(guessesLeft < 1){
                         
                         document.getElementById("endgame").innerHTML = "You Lose!";
+
+                        document.getElementById("endgame").style.color = "red";
+
+                        document.getElementById("keys").innerHTML = "";
+
+                        document.getElementById("blanks").innerHTML = lettersWord;
 
                 }
 
