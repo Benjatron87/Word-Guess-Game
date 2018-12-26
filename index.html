@@ -8,30 +8,32 @@
         <link href="css/style.css" rel="stylesheet">
 
     </head>
-    <body>
+    <body id="body">
        
         <div class="container">
 
             <div class="row d-flex justify-content-center border border-secondary" id="header">Ultimate Frisbee Word Guessing Game:</div>
 
-            <div class="container border border-secondary border-top-0 bg-light">
+            <div class="container game-start border border-secondary border-top-0 border-bottom-0 bg-light">
 
-                <div class="row d-flex justify-content-center">Press Spacebar to Start New Game!</div>
-
-                <div class="row d-flex justify-content-center" id="keys"></div>
+                <div class="row d-flex justify-content-center" id="keys">Press Space to Start a New Game</div>
 
             </div>
 
             <div class="container background">
 
-                <div class="row d-flex justify-content-center" id="blanks">
+                <div class="col-md-12">
 
-                    
-                </div>
+                    <div class="row d-flex justify-content-center" id="blanks">
+
+                        
+                    </div>
 
 
-                <div class="row d-flex justify-content-center" id="endgame">
+                    <div class="row d-flex justify-content-center" id="endgame">
 
+
+                    </div>
 
                 </div>
             
@@ -40,7 +42,7 @@
 
             <div class="row stats">
 
-                <div class="col-md-6 d-flex justify-content-center border border-secondary">
+                <div class="col-md-6 d-flex justify-content-center border border-secondary wrong-guess">
 
                     <a>Letters Guessed:</a>
 
@@ -48,7 +50,7 @@
 
                 </div>
 
-                <div class="col-md-6 d-flex justify-content-center border border-secondary">
+                <div class="col-md-6 d-flex justify-content-center border border-secondary guesses">
 
                     <a>Number of Guesses Left:</a>
 

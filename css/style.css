@@ -1,24 +1,46 @@
+
+body {
+    background-color: whitesmoke;
+}
+
 #header {
-    background-image: linear-gradient(rgb(4, 59, 16), white);
+    background-image: linear-gradient(black, yellow);
     color: whitesmoke;
     font-size: 30px;
     font-weight: bold;
     padding: 30px;
-    margin-top: 10px;
+    margin-top: 0;
 }
 
 #blanks, #endgame {
-    padding-top: 90px;
-    padding: 70px;
+    padding: 50px;
     font-size: 50px;
-    color: whitesmoke;
+    color: yellow;
     font-weight: bold;
+    line-height: 40px;
 }
 
 .stats {
-    background-image: linear-gradient(white,rgb(4, 59, 16));
+    background-image: linear-gradient(yellow, black);
 }
 
 .background {
     background-image: url(../images/ultimate-frisbee.png);
+    padding: 65px;
+}
+
+.wrong-guess, .guesses {
+    color: white;
+}
+
+.game-start {
+    background-image: linear-gradient(yellow, black);
+}
+
+.spacebar {
+    color: rgb(4, 59, 16);
+}
+
+#keys {
+    color: white;
 }
