@@ -81,18 +81,19 @@ document.body.onkeyup = function(e){
             // When any key is pressed it acts as a guess and the following processes are run.
             document.onkeypress = function(event) {
 
-                    // As long as there are more guesses left and the word has not been guessed in full do the following.
-                    if(guessesLeft > 0 && (blanksWord !== lettersWord)){
+                // Captures the value of the key pressed and puts it in the variable charCode.
+                event = event || window.event;
+
+                var charCode = event.keyCode || event.which;
+
+                    // As long as there are more guesses left, the word has not been guessed in full, and the key pressed is a letter.
+                    if(guessesLeft > 0 && (blanksWord !== lettersWord && charCode >= 97 && charCode <= 121)){
                     
                         document.getElementById("guesses").innerHTML = guessesLeft;
 
                         console.log(guessesLeft);
 
-                        // Figures out which key was pressed and adds that to the "guess" variable.
-                        event = event || window.event;
-
-                        var charCode = event.keyCode || event.which;
-
+                        // Figures out which letter was pressed and adds that to the "guess" variable.
                         var guess = String.fromCharCode(charCode);
 
                         guess = guess.toUpperCase();

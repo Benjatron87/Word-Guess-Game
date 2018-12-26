@@ -26,7 +26,7 @@ body {
 
 .background {
     background-image: url(../images/ultimate-frisbee.png);
-    padding: 65px;
+    padding: 120px;
 }
 
 .wrong-guess, .guesses {
