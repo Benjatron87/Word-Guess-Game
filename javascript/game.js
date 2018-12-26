@@ -27,12 +27,16 @@ document.body.onkeyup = function(e){
         //  Make an empty "blanks" array to be filled later.
         var blanks = [];
 
+        // Make an empty array for the letters guessed.
+        var guessed = [];
+
         // Set the number of guesses for each round.
         var guessesLeft = 10;
 
         // State other necessary variables.
-        var blankVar2 = "";
         var blankVar = "";
+        var blankVar2 = "";
+        var blankVar3 = "";
         var guessNum = 0;
 
         // Prompt the user as to what to do next.
@@ -41,9 +45,7 @@ document.body.onkeyup = function(e){
         // Sets background color.
         document.getElementById("body").style.backgroundColor = "whitesmoke";
 
-        // State variables to link to HTML.
-        var DOMblanks = document.getElementById("blanks");
-
+        // Set some HTML values.
         document.getElementById("guesses").innerHTML = guessesLeft;
         document.getElementById("endgame").innerHTML = "";
         document.getElementById("wrong-guess").innerHTML = " ";
@@ -98,6 +100,7 @@ document.body.onkeyup = function(e){
 
                         guess = guess.toUpperCase();
 
+                        // Create a boolean variable for the following "if" statement.
                         var guessRight = false;
 
                         // Checks if the guess matches any letter in the "letters" array.
