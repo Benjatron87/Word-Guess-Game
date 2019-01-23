@@ -20,6 +20,8 @@ var words = [
     "BREAK"
             ]
 
+var wrongGuesses = [];
+
 
 // Game starts upon pressing the space button.
 document.body.onkeyup = function(e){
@@ -125,6 +127,25 @@ document.body.onkeyup = function(e){
 
                         console.log(blanks);
                         console.log(letters);
+                        console.log(guess);
+
+                        // If your guess was wrong, it adds the letter guessed to the HTML and removes 1 from the guesses left.
+                        if (guessRight == false){
+
+                            var exists = wrongGuesses.indexOf(guess);
+
+                            console.log(exists);
+
+                            if(exists == -1){
+
+                                guessesLeft--;
+
+                                wrongGuesses.push(guess);
+
+                                document.getElementById("wrong-guess").innerHTML += guess;
+                            }
+                        }
+
 
                         // Turns the "blanks" and "letters" arrays into strings that can be compared with each other.
                         blanksWord = blanks.join("");
@@ -143,14 +164,6 @@ document.body.onkeyup = function(e){
                             document.getElementById("endgame").innerHTML = "You Win!";
 
                             document.getElementById("keys").innerHTML = "Press Space to Start a New Game";
-                        }
-
-                        // If your guess was wrong, it adds the letter guessed to the HTML and removes 1 from the guesses left.
-                        if (guessRight == false){
-
-                            guessesLeft--;
-
-                            document.getElementById("wrong-guess").innerHTML += guess;
                         }
 
                         // If your number of guesses goes below 1, then it displays "You Lose!" to the HTML.
